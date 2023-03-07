@@ -1,0 +1,75 @@
+--Tabel Records Label--
+CREATE TABLE records_label(id_label text PRIMARY KEY, nama text, alamat text);
+
+Desc records_label;
+INSERT INTO records_label (idLabel, nama, alamat) VALUES ('L001', 'Interscope Records', '2220 Colorado Ave Santa Monica, CA 90404 USA');
+INSERT INTO records_label (idLabel, nama, alamat) VALUES ('L002', 'Republic Records', '320 E 52nd St, New York City, New York 10022, US');
+
+Select * from records_label;
+
+--Tabel Musisi--
+CREATE TABLE musisi (
+id_musisi text PRIMARY KEY,
+nama_asli text,
+nama_panggung text,
+id_label text);
+
+Desc musisi;
+INSERT INTO musisi (idMusisi, namaAsli, namaPanggung, idLabel) VALUES ('M001', 'Selena Marie Gomez', 'Selena Gomez', 'L001');
+INSERT INTO musisi (idMusisi, namaAsli, namaPanggung, idLabel) VALUES ('M002', 'Ariana Grande Butera', 'Ariana Grande', 'L002');
+INSERT INTO musisi (idMusisi, namaAsli, namaPanggung, idLabel) VALUES ('M003', 'Olivia Isabel Rodrigo', 'Olivia Rodrigo', 'L001');
+INSERT INTO musisi (idMusisi, namaAsli, namaPanggung, idLabel) VALUES ('M004', 'Justin Drew Bieber', 'Justin Bieber', 'L002');
+INSERT INTO musisi (idMusisi, namaAsli, namaPanggung, idLabel) VALUES ('M003', 'Billie Eilish Pirate Baird O'Connell', 'Billie Eilish', 'L001');
+
+Select * from musisi;
+
+
+--Tabel Grup Band--
+CREATE TABLE grup_band(id_grup text PRIMARY KEY, nama text, anggota text, id_label text);
+Desc grup_band;
+INSERT INTO grup_band (id_grup, nama, anggota, id_label) VALUES ('G001', 'Blackpink', 'Jennie Kim, Lalisa Manobal, Jisoo, Rose', 'L001');
+Select * from grup_band;
+
+--Tabel Album--
+CREATE TABLE album (id_album text PRIMARY KEY, judul text, tanggal_release date, jumlah_lagu int, harga int, id_label);
+Desc album;
+INSERT INTO album (id_album, judul, tanggal_release, jumlah_lagu, id_label) VALUES ('A001', 'Rare', '2020-01-10', 275000, 13, 'L001');
+INSERT INTO album (id_album, judul, tanggal_release, jumlah_lagu, id_label) VALUES ('A002', 'thank u, next', '2020-01-10', 275000, 12, 'L002');
+INSERT INTO album (id_album, judul, tanggal_release, jumlah_lagu, id_label) VALUES ('A003', 'SOUR', '2020-01-10', 275000, 11, 'L001');
+INSERT INTO album (id_album, judul, tanggal_release, jumlah_lagu, id_label) VALUES ('A004', 'Justice', '2020-01-10', 275000, 16, 'L002');
+INSERT INTO album (id_album, judul, tanggal_release, jumlah_lagu, id_label) VALUES ('A005', 'Happier Than Ever', '2020-01-10', 275000, 16, 'L001');
+INSERT INTO album (id_album, judul, tanggal_release, jumlah_lagu, id_label) VALUES ('A006', 'BORN PINK', '2020-01-10', 275000, 8, 'L001');
+Select * from album;
+
+
+--Tabel Lagu--
+CREATE TABLE lagu (id_lagu text PRIMARY KEY, judul text, durasi_menit float, tanggal_release date, penulis text, genre text, id_album text);
+Desc lagu;
+INSERT INTO lagu (id_lagu, judul, durasi_menit, tanggal_release, penulis, genre, id_album) VALUES ('S001', 'A Sweeter Place', 4.23,'2020-01-10', 'Selena Gomez, Kid Cudi, Ian Kirkpatrick, Madison Love, Uzoechi Eemenike', 'Pop', 'A001');
+INSERT INTO lagu (id_lagu, judul, durasi_menit, tanggal_release, penulis, genre, id_album) VALUES ('S002', 'break up with your girlfriend, i’m bored', 3.10,'2019-02-08', 'Ariana Grande, Max Martin, Ilya Salmanzadeh, Savan Kotecha, Kandi Burruss, Kevin Briggs', 'R&B, Pop', 'A002');
+INSERT INTO lagu (id_lagu, judul, durasi_menit, tanggal_release, penulis, genre, id_album) VALUES ('S003', 'brutal', 2.23,'2021-05-21', 'Olivia Rodrigo, Dan Nigro', 'Pop rock', 'A003');
+INSERT INTO lagu (id_lagu, judul, durasi_menit, tanggal_release, penulis, genre, id_album) VALUES ('S004', 'Off My Face', 2.36,'2021-03-19', 'Justin Bieber, Daniel James, Leah Haywood, Jake Torrey, Tia Scola', 'Pop', 'A004');
+INSERT INTO lagu (id_lagu, judul, durasi_menit, tanggal_release, penulis, genre, id_album) VALUES ('S005', 'Billie Bossa Nova', 3.16,'2021-07-30', 'Billie Eilish, Finneas Oconnell', 'Alternative', 'A005');
+INSERT INTO lagu (id_lagu, judul, durasi_menit, tanggal_release, penulis, genre, id_album) VALUES ('S006', 'Tally', 3.04,'2022-09-16', 'Nat Dunn, David Phelan, Alex Oriet, Brian Lee, Soraya LaPread', 'K-Pop', 'A006');
+Select * from lagu;
+
+
+--Tabel Penjualan--
+CREAT TABLE penjualan (id_penjualan uuid primary key, tanggal_penjualan timestamp, status_pembelian text, total_harga float);
+Desc penjualan;
+INSERT INTO penjualan (id_penjualan, tanggal_penjualan, status_pembelian, total_harga) VALUES (now(), toTimestamp(now()), 'PROSES', 550000);
+INSERT INTO penjualan (id_penjualan, tanggal_penjualan, status_pembelian, total_harga) VALUES (now(), toTimestamp(now()), 'LUNAS', 275000);
+INSERT INTO penjualan (id_penjualan, tanggal_penjualan, status_pembelian, total_harga) VALUES (now(), toTimestamp(now()), 'PROSES', 200000);
+INSERT INTO penjualan (id_penjualan, tanggal_penjualan, status_pembelian, total_harga) VALUES (now(), toTimestamp(now()), 'LUNAS', 900000);
+Select*from penjualan;
+
+--Tabel Detail Penjualan--
+CREATE TABLE detail_penjualan (id_detail timeuuid primary key, id_album text, jumlah_pembelian int, total_harga float);
+Desc detail_penjualan;
+INSERT INTO detail_penjualan (id_detail, id_album, jumlah_pembelian, total_harga) VALUES (38072ab0-7cfc-11ed-99b1-bd7677876df3, 'A002', 1, 200000);
+INSERT INTO detail_penjualan (id_detail, id_album, jumlah_pembelian, total_harga) VALUES (380025d0-7cfc-11ed-99b1-bd7677876df3, 'A001', 1, 275000);
+INSERT INTO detail_penjualan (id_detail, id_album, jumlah_pembelian, total_harga) VALUES (38046b90-7cfc-11ed-99b1-bd7677876df3, 'A001', 2, 550000);
+INSERT INTO detail_penjualan (id_detail, id_album, jumlah_pembelian, total_harga) VALUES (38099bb0-7cfc-11ed-99b1-bd7677876df3, 'A006', 3, 900000);
+Select*from detail_penjualan;
+
+
